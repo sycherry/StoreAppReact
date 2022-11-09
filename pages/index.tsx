@@ -21,7 +21,7 @@ export default function Home(props:any) {
                 alt={`Washing machine ${post.title}`}
                 width={800}
                 height={800}
-                className="border border-gray-800"
+                className="border border-gray-800 hover:shadow-lg"
                 objectFit="cover"
               />
             <h2 className="
@@ -31,7 +31,7 @@ export default function Home(props:any) {
             </Link>
         ))}
       </div>
-        </Layout>
+    </Layout>
   )
 }
 
