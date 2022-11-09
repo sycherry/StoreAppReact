@@ -19,18 +19,21 @@ export default function EditItem(props) {
         setDetail(e.target.value)
     }
     const updateItem = () => {
-        router.push({
-            pathname: '/',
-            params: { title: title, detail: detail }
-        })
+        router.push(
+            {
+              pathname: '/',
+              query: { title: title, detail: detail },
+            }, '/', )
     }
-    const removeItem = (id) => {
-        router.push({
-            pathname: '/',
-            params: { id: id }
-        })
-    };
 
+
+    const removeItem = (id:any) => {
+        router.push(
+            {
+              pathname: '/',
+              query: { id: id },
+            }, '/', )
+    }
     return (
         <Layout>
             <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">

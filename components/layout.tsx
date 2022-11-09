@@ -44,7 +44,8 @@ export default function Layout({ children }) {
                 </p>
             </footer>
 
-            <Link className="cursor-pointer" href="/create"><FloationgActionButton /></Link>
+            {router.pathname === '/' || router.pathname.startsWith('/products') ?
+            <Link className="cursor-pointer" href="/create"><FloationgActionButton /></Link> : null}
         </div>
     );
 }

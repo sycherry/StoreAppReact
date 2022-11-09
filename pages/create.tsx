@@ -16,10 +16,11 @@ export default function CreateItem() {
         setDetail(e.target.value)
     }
     const createItem = () => {
-        router.push({
-            pathname: '/',
-            params: { title: title, detail: detail }
-        })
+        router.push(
+            {
+              pathname: '/',
+              query: { title: title, detail: detail },
+            }, '/', )
     }
     return (
         <Layout>
@@ -56,6 +57,7 @@ export default function CreateItem() {
                 <Button
                     onClick={() => createItem()}
                     text={"Create Item"}
+                    type={"default"}
                 />
             </article>
         </Layout>

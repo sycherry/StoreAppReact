@@ -10,13 +10,25 @@ export default function Home(props: any) {
 
   const [updateData, setUpdateData] = useState(data)
   const router = useRouter()
-  const { id } = router.query
 
   // console.log("router.query",router.query)
 
-  // useEffect(() => {
-  //   setUpdateData(data => data.filter((data) => data.id !== id));
-  // }, [id])
+  const generateId = () => {
+    return Date.now().toString() + "_" + (Math.random() * 1e6).toFixed(0).toString();
+  };
+
+  useEffect(() => {
+     // create
+     setUpdateData([...updateData, {
+      photo: "http://localhost:3000/washing.jpg",
+      detail: router.query.detail, 
+      title: router.query.title, 
+      id: generateId() }]);
+
+      // remove
+      setUpdateData(data => data.filter((data) => data.id !== router.query.id));
+
+  }, [router.query])
 
   // const updateItem = e => {
   //   const newData = data.map(item => {
