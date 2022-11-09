@@ -19,6 +19,10 @@ a {
   box-sizing: border-box;
 }
 
+h1,h2 {
+  line-height: 1.6;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -36,7 +40,7 @@ a {
 }
 
 .flex-item {
-  width: calc(33.33333333% - 2.5rem);
+  width: calc(25% - 2.5rem);
   line-height: 1px;
 }
 
@@ -44,9 +48,8 @@ a {
   .flex-set {
     width: calc(100% + 2rem);
   }
-
   .flex-item {
-    width: calc(100% / 2 - 2rem);
+    width: calc(33.333% - 2rem);
   }
 }
 
@@ -54,8 +57,7 @@ a {
   .flex-set {
     width: calc(100% + 1.5rem);
   }
-
   .flex-item {
-    width: 100%;
+    width: calc(50% - 1.5rem);
   }
 }
