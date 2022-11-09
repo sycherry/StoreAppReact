@@ -16,8 +16,7 @@ export default function Breadcrumb({post}) {
               </svg>
             </div>
           </li>
-  
-
+          
           <li className="text-sm">
             <a href="#" aria-current="page" className="font-medium text-gray-500 
             hover:text-gray-600">{post.title}</a>
