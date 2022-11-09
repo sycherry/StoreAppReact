@@ -16,7 +16,7 @@ export default function Layout({ children }) {
             {/* <div className="relative"> */}
             <header className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10 text-center my-10">
                 <Link className="cursor-pointer" href={`/`}>
-                    <h1 className="
+               <h1 className="
                 text-4xl
                 md:text-5xl
                 lg:text-6xl
@@ -29,9 +29,9 @@ export default function Layout({ children }) {
             </header>
 
             <main>
-                <article className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10">
+                
                     {children}
-                </article>
+        
 
                 {/* <div className="fixed right-20 buttom-20"> */}
                 <FloationgActionButton />{/* </div> */}
