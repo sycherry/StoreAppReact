@@ -3,9 +3,16 @@ import Image from 'next/image'
 import Layout from '../../components/layout'
 import Breadcrumb from '../../components/breadcrumb'
 import Button from '../../components/button'
+import { useRouter } from 'next/router';
 
-export default function PostWrapper(props) {
+export default function ProductItem(props) {
   const { post } = props;
+  const router = useRouter();
+  
+  const toEdit = (id) => {
+    router.push({ pathname: `/edit/${id}` })
+  }
+
   return (
     <Layout>
       <article className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10">
@@ -38,8 +45,10 @@ export default function PostWrapper(props) {
             </div>
 
             <Button
+              onClick={() => toEdit(post.id)}
               text={"Edit item"}
-              post={post} />
+              type={"default"}/>
+
           </div>
         </div>
       </article>
