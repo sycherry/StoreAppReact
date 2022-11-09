@@ -18,11 +18,11 @@ export default function EditItem(props) {
     const textAreaDetailChange = e => {
         setDetail(e.target.value)
     }
-    const updateItem = () => {
+    const updateItem = (id:any) => {
         router.push(
             {
               pathname: '/',
-              query: { title: title, detail: detail },
+              query: { id: id, title: title, detail: detail },
             }, '/', )
     }
 
@@ -70,7 +70,7 @@ export default function EditItem(props) {
                 </div>
 
                 <Button
-                    onClick={() => updateItem()}
+                    onClick={() => updateItem(post.id)}
                     text={"Update item"}
                     type={"default"} />
                 <Button

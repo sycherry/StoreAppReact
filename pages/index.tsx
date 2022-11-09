@@ -18,27 +18,34 @@ export default function Home(props: any) {
   };
 
   useEffect(() => {
-     // create
-     setUpdateData([...updateData, {
+    // create
+    setUpdateData([...updateData, {
       photo: "http://localhost:3000/washing.jpg",
-      detail: router.query.detail, 
-      title: router.query.title, 
-      id: generateId() }]);
+      detail: router.query.detail,
+      title: router.query.title,
+      id: generateId()
+    }]);
 
-      // remove
-      setUpdateData(data => data.filter((data) => data.id !== router.query.id));
+    // remove
+    setUpdateData(data => data.filter((data) => data.id !== router.query.id));
+
+    if(router.pathname.startsWith('/edit')){
+      const newData = data.map(item => {
+        if (item.id == router.query.id) {
+          return {
+            photo: "http://localhost:3000/washing.jpg",
+            id: router.query.id,
+            title: router.query.title,
+            detail: router.query.detail
+          };
+        }
+        return item;
+      });
+      setUpdateData(newData);
+    }
+
 
   }, [router.query])
-
-  // const updateItem = e => {
-  //   const newData = data.map(item => {
-  //       if (item.id == updateID) {
-  //         return { title: inputPanelText, id: updateID };
-  //       }
-  //       return item;
-  //     });
-  //     setData(newData);
-  // }
 
   return (
     <Layout>
