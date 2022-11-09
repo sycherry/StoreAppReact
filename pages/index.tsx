@@ -24,7 +24,10 @@ export default function Home(props:any) {
                 className="border border-gray-800"
                 objectFit="cover"
               />
-            <h2 className="text-xl mt-2">{post.title}</h2>
+            <h2 className="
+            text-sm
+            md:text-base
+            mt-2">{post.title}</h2>
             </Link>
         ))}
       </div>
