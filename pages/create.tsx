@@ -28,7 +28,7 @@ export default function CreateItem() {
                 id: generateId(),
                 title,
                 detail,
-                photo: "http://localhost:3000/washing.jpg",
+                photo: "/washing.jpg",
                 time: new Date().toLocaleString()
             })
         router.push({ pathname: '/' })

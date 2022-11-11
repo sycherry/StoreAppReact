@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export default function UploadImage() {
 
-    const [file, setFile] = useState("http://localhost:3000/washing.jpg");
+    const [file, setFile] = useState("/washing.jpg");
 
     const changeHandler = (event: any) => {
         setFile(URL.createObjectURL(event.target.files[0]))

@@ -39,7 +39,7 @@ export default function EditItem() {
             id: Object(router.query.id),
             title,
             detail,
-            photo: "http://localhost:3000/washing.jpg",
+            photo: "/washing.jpg",
             time: new Date().toLocaleString(),
         })
         router.push({ pathname: '/', })
