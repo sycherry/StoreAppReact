@@ -9,8 +9,7 @@ export default function UploadImage() {
     }
 
     return (
-
-        <>
+        <div>
             <div className="flex flex-col items-center mb-10">
                 <label className="border border-black mb-10">
                     <div
@@ -23,12 +22,10 @@ export default function UploadImage() {
                         }} />
                     <input type="file" className="hidden" onChange={changeHandler} />
                 </label>
-
                 <div className="flex space-x-4">
-                    <button onClick={() => setFile('')} className="px-4 py-2 text-white bg-red-500 rounded shadow-xl">Create</button>
-                    <button className="px-4 py-2 text-white bg-red-500 rounded shadow-xl">Cannel</button>
+                     <button onClick={() => setFile('')} className="px-4 py-2 text-white bg-red-500 rounded shadow-xl">Cannel</button>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
