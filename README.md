@@ -18,6 +18,9 @@ Simple washing machine apprication utilizing React to design and create🌈
 - Run `npm i` (will install the dependencies)
 - Run `npm run dev`
 
+## deploy
+https://store-app-react-p079cx2mk-sayaxxx.vercel.app/
+
 ## Support
 
 Create an issue in the Github repository
