@@ -1,105 +1,107 @@
 import React, { FC, useState, useEffect } from "react";
-import { initialData } from '../../initialData';
 import Layout from '../../components/layout'
 import Button from '../../components/button'
 import UploadImage from '../../components/uploadImage'
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux';
+import { updateItemList, removeItemList } from '../../store/itemList/action'
 
-export default function EditItem(props) {
-    const { post } = props;
+export default function EditItem() {
+
     const router = useRouter();
-    const [files, setFiles] = useState([])
-    const [title, setTitle] = useState(post.title)
-    const [detail, setDetail] = useState(post.detail)
+    const dispatch = useDispatch();
+    const loadingItemList = useSelector((state: any) => state.itemList);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const inputTextChange = e => {
+    useEffect(() => {
+        const { id } = router.query;
+        const newTodoList = loadingItemList.filter((item: any) => item.id == id)
+        setTitle(newTodoList[0]?.title);
+        setDetail(newTodoList[0]?.detail);
+        setIsLoading(false);
+    }, [router.isReady, router.query, loadingItemList])
+
+    const [files, setFiles] = useState([])
+    const [title, setTitle] = useState('')
+    const [detail, setDetail] = useState('')
+
+    const inputTextChange = (e: any) => {
         setTitle(e.target.value)
     }
-    const textAreaDetailChange = e => {
+    const textAreaDetailChange = (e: any) => {
         setDetail(e.target.value)
     }
-    const updateItem = (id:any) => {
-        router.push(
-            {
-              pathname: '/',
-              query: { id: id, title: title, detail: detail },
-            }, '/', )
+
+    const updateItem = () => {
+
+        updateItemList({
+            id: Object(router.query.id),
+            title,
+            detail,
+            photo: "http://localhost:3000/washing.jpg",
+            time: new Date().toLocaleString(),
+        })
+        router.push({ pathname: '/', })
     }
 
-
-    const removeItem = (id:any) => {
-        router.push(
-            {
-              pathname: '/',
-              query: { id: id },
-            }, '/', )
+    const removeItem = () => {
+        removeItemList({
+            id: Object(router.query.id),
+            title: '',
+            detail: '',
+            photo: "",
+            time: "",
+        })
+        router.push({ pathname: '/' })
     }
     return (
-        <Layout>
-            <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">
-                <div className="text-4xl text-center mb-4">Edit item</div>
-                <button type="button" onClick={() => router.back()}>←Back</button>
+        isLoading ? <Layout>Loading...</Layout>
+            :
+
+            <Layout>
+                <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">
+                    <div className="text-4xl text-center mb-4">Edit item</div>
+                    <button type="button" onClick={() => router.back()}>←Back</button>
 
 
-                <UploadImage />
+                    <UploadImage />
 
-                <div className="mb-4 relative">
-                    <input
-                        value={title}
-                        onChange={inputTextChange}
-                        id="name" type="text" name="name"
+                    <div className="mb-4 relative">
+                        <input
+                            value={title}
+                            onChange={inputTextChange}
+                            id="name" type="text" name="name"
 
-                        className="input border border-gray-400 appearance-none rounded w-full px-3 
+                            className="input border border-gray-400 appearance-none rounded w-full px-3 
                 py-3 pt-5 pb-2 focus focus:outline-none focus:border-pink-600 focus:border-2  
-                active:border-pink-600 text-lg" autofocus />
+                active:border-pink-600 text-lg" autoFocus />
 
-                    <label for="name" className="label font-light absolute mb-0 -mt-2 pt-4 pl-3 
+                        <label htmlFor="name" className="label font-light absolute mb-0 -mt-2 pt-4 pl-3 
                 leading-tighter text-gray-400 mt-2 cursor-text">Title</label>
-                </div>
+                    </div>
 
-                <div className="mb-4 relative">
-                    <textarea
-                        value={detail}
-                        onChange={textAreaDetailChange}
-                        name="message" id="message" cols="18" rows="12"
-                        className="input border border-gray-400 appearance-none rounded
+                    <div className="mb-4 relative">
+                        <textarea
+                            value={detail}
+                            onChange={textAreaDetailChange}
+                            name="message" id="message" cols={18} rows={12}
+                            className="input border border-gray-400 appearance-none rounded
                 w-full px-3 py-3 pt-5 pb-2 focus focus:outline-none focus:border-pink-600 
                 focus:border-2 active:border-pink-600 text-lg"></textarea>
-                    <label for="message" className="label font-light absolute mb-0 -mt-2 pt-4 pl-3 
+                        <label htmlFor="message" className="label font-light absolute mb-0 -mt-2 pt-4 pl-3 
                 leading-tighter text-gray-400 mt-2 cursor-text">Detail</label>
-                </div>
+                    </div>
 
-                <Button
-                    onClick={() => updateItem(post.id)}
-                    text={"Update item"}
-                    type={"default"} />
-                <Button
-                    onClick={() => removeItem(post.id)}
-                    text={"Remove item"}
-                    type={"text"} />
-            </article>
-        </Layout>
+                    <Button
+                        onClick={() => updateItem()}
+                        text={"Update item"}
+                        type={"default"} />
+                    <Button
+                        onClick={() => removeItem()}
+                        text={"Remove item"}
+                        type={"text"} />
+                </article>
+            </Layout>
     );
 }
-
-export const getStaticProps = async ({ params }) => {
-    const initialDataList = initialData.filter((p) => p.id.toString() === params.id);
-    return {
-        props: {
-            post: initialDataList[0],
-        },
-    };
-};
-
-export async function getStaticPaths() {
-    const paths = initialData.map((data) => ({
-        params: { id: data.id.toString() },
-    }))
-    return {
-        paths,
-        fallback: false
-    };
-}
-
-
-

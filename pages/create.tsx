@@ -3,9 +3,12 @@ import Layout from '../components/layout'
 import Button from '../components/button'
 import { useRouter } from 'next/router';
 import UploadImage from '../components/uploadImage'
+import { useDispatch } from 'react-redux';
+import { addItemList } from '../store/itemList/action'
 
 export default function CreateItem() {
     const router = useRouter();
+    const dispatch = useDispatch();
     const [title, setTitle] = useState('')
     const [detail, setDetail] = useState('')
 
@@ -15,12 +18,20 @@ export default function CreateItem() {
     const textAreaDetailChange = (e: any) => {
         setDetail(e.target.value)
     }
+
+    const generateId = () => {
+        return Date.now().toString() + "_" + (Math.random() * 1e6).toFixed(0).toString();
+    };
+
     const createItem = () => {
-        router.push(
-            {
-              pathname: '/',
-              query: { title: title, detail: detail },
-            }, '/', )
+            addItemList({
+                id: generateId(),
+                title,
+                detail,
+                photo: "http://localhost:3000/washing.jpg",
+                time: new Date().toLocaleString()
+            })
+        router.push({ pathname: '/' })
     }
     return (
         <Layout>
@@ -38,7 +49,7 @@ export default function CreateItem() {
                 py-3 pt-5 pb-2 focus focus:outline-none focus:border-indigo-600 focus:border-2  
                 active:border-indigo-600 text-lg" autoFocus />
 
-                    <label for="name" className="label font-light absolute mb-0 -mt-2 pt-4 pl-3 
+                    <label htmlFor="name" className="label font-light absolute mb-0 -mt-2 pt-4 pl-3 
                 leading-tighter text-gray-400 mt-2 cursor-text">Title</label>
                 </div>
 
@@ -46,11 +57,11 @@ export default function CreateItem() {
                     <textarea
                         value={detail}
                         onChange={textAreaDetailChange}
-                        name="message" id="message" cols="18" rows="12"
+                        name="message" id="message" cols={18} rows={12}
                         className="input border border-gray-400 appearance-none rounded
                 w-full px-3 py-3 pt-5 pb-2 focus focus:outline-none focus:border-indigo-600 
                 focus:border-2 active:border-indigo-600 text-lg"></textarea>
-                    <label for="message" className="label font-light absolute mb-0 -mt-2 pt-4 pl-3 
+                    <label htmlFor="message" className="label font-light absolute mb-0 -mt-2 pt-4 pl-3 
                 leading-tighter text-gray-400 mt-2 cursor-text">Detail</label>
                 </div>
 

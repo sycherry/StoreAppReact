@@ -1,76 +1,70 @@
-import { initialData } from '../../initialData';
+import { useEffect, useState } from 'react';
 import Image from 'next/image'
-import Layout from '../../components/layout'
-import Breadcrumb from '../../components/breadcrumb'
-import Button from '../../components/button'
+import Layout from '../../components/layout';
+import Breadcrumb from '../../components/breadcrumb';
+import Button from '../../components/button';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 
-export default function ProductItem(props) {
-  const { post } = props;
+export default function ProductItem() {
   const router = useRouter();
-  
+  const loadingItemList = useSelector((state) => state.itemList);
+
+  const [itemList, setItemList] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
   const toEdit = (id) => {
     router.push({ pathname: `/edit/${id}` })
   }
 
+  useEffect(() => {
+    const { id } = router.query;
+    const newTodoList = loadingItemList.filter((item) => item.id == id)
+    setItemList(newTodoList[0]);
+    setIsLoading(false)
+  }, [router.isReady, router.query, loadingItemList])
+
   return (
-    <Layout>
-      <article className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10">
-        <Breadcrumb
-          post={post} />
+    isLoading ? <Layout>Loading...</Layout>
+      :
+      <Layout>
+        <article className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10">
+          <Breadcrumb
+            post={itemList} />
 
-        <div className="md:flex md:flex-row">
-          <div className="md:basis-1/2 mb-6 md:mb-0">
-            <Image
-              src={post.photo}
-              alt={`Washing machine ${post.title}`}
-              width={800}
-              height={800}
-              className="border border-gray-800"
-              objectFit="cover"
-            />
-          </div>
-
-          <div className="md:basis-1/2 md:pl-8 lg:pl-10">
-            <div class="lg:col-span-2 lg:border-r lg:border-gray-200 mb-4">
-              <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                {post.title}</h1>
+          <div className="md:flex md:flex-row">
+            <div className="md:basis-1/2 mb-6 md:mb-0">
+              <Image
+                src={itemList.photo}
+                alt={`Washing machine ${itemList.title}`}
+                width={800}
+                height={800}
+                className="border border-gray-800"
+                objectFit="cover"
+              />
             </div>
 
-            <div>
-              <h3 class="sr-only">Description</h3>
-              <div class="space-y-6">
-                <p class="text-base text-gray-900">{post.detail}</p>
+            <div className="md:basis-1/2 md:pl-8 lg:pl-10">
+              <div className="lg:col-span-2 lg:border-r lg:border-gray-200 mb-4">
+                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                  {itemList.title}</h1>
               </div>
+
+              <div>
+                <h3 className="sr-only">Description</h3>
+                <div className="space-y-6">
+                  <p className="text-base text-gray-900">{itemList.detail}</p>
+                </div>
+              </div>
+
+              <Button
+                onClick={() => toEdit(itemList.id)}
+                text={"Edit item"}
+                type={"default"} />
+
             </div>
-
-            <Button
-              onClick={() => toEdit(post.id)}
-              text={"Edit item"}
-              type={"default"}/>
-
           </div>
-        </div>
-      </article>
-    </Layout>
+        </article>
+      </Layout>
   );
-}
-
-export const getStaticProps = async ({ params }) => {
-  const initialDataList = initialData.filter((p) => p.id.toString() === params.id);
-  return {
-    props: {
-      post: initialDataList[0],
-    },
-  };
-};
-
-export async function getStaticPaths() {
-  const paths = initialData.map((data) => ({
-    params: { id: data.id.toString() },
-  }))
-  return {
-    paths,
-    fallback: false
-  };
 }
