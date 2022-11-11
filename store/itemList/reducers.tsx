@@ -17,7 +17,7 @@ type Action = {
 const itemListInitialState = initialData
 
 export default function reducer(state: ItemList[] = itemListInitialState, action: Action) {
-  // console.log("action", action)
+  console.log("action", action)
   let newData
   switch (action.type) {
     case itemListActionTypes.ADD:

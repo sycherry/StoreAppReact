@@ -40,7 +40,7 @@ export default function EditItem() {
 
         dispatch(
             updateItemList({
-                id: Object(router.query.id),
+                id: router.query.id,
                 title,
                 detail,
                 photo: "/washing.jpg",
@@ -52,7 +52,7 @@ export default function EditItem() {
     const removeItem = () => {
         dispatch(
             removeItemList({
-                id: Object(router.query.id),
+                id: router.query.id,
                 title: '',
                 detail: '',
                 photo: "",

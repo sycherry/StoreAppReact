@@ -7,7 +7,7 @@ export const itemListActionTypes = {
 }
 
 export interface ItemList {
-  id: string
+  id: any
   title: string
   detail: string
   photo: string
