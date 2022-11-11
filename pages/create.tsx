@@ -38,24 +38,6 @@ export default function CreateItem() {
         router.push({ pathname: '/' })
     }
 
-    useEffect(() => {
-        var toggleInputContainer = function (input: any) {
-            if (input.value != "") {
-                input.classList.add('filled');
-            } else {
-                input.classList.remove('filled');
-            }
-        }
-        var inputs = document.getElementsByClassName("input");
-        for (var i = 0; i < inputs.length; i++) {
-            console.log('looped');
-            inputs[i].addEventListener('keyup', function () {
-                toggleInputContainer(this);
-            });
-            toggleInputContainer(inputs[i]);
-        }
-    }, []);
-
     return (
         <Layout>
             <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">

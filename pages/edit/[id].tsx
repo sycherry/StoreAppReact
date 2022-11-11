@@ -61,25 +61,6 @@ export default function EditItem() {
         router.push({ pathname: '/' })
     }
 
-
-    useEffect(() => {
-        var toggleInputContainer = function (input: any) {
-            if (input.value != "") {
-                input.classList.add('filled');
-            } else {
-                input.classList.remove('filled');
-            }
-        }
-        var inputs = document.getElementsByClassName("input");
-        for (var i = 0; i < inputs.length; i++) {
-            console.log('looped');
-            inputs[i].addEventListener('keyup', function () {
-                toggleInputContainer(this);
-            });
-            toggleInputContainer(inputs[i]);
-        }
-    }, [title,detail]);
-
     return (
         isLoading ? <Layout>Loading...</Layout>
             :
