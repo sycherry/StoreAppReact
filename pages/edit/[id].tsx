@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux';
 import { updateItemList, removeItemList } from '../../store/itemList/action'
+import Input from "../../components/input";
+import Textarea from "../../components/textarea";
 
 export default function EditItem() {
 
@@ -20,6 +22,7 @@ export default function EditItem() {
         setTitle(newTodoList[0]?.title);
         setDetail(newTodoList[0]?.detail);
         setIsLoading(false);
+
     }, [router.isReady, router.query, loadingItemList])
 
     const [files, setFiles] = useState([])
@@ -36,65 +39,63 @@ export default function EditItem() {
     const updateItem = () => {
 
         dispatch(
-        updateItemList({
-            id: Object(router.query.id),
-            title,
-            detail,
-            photo: "/washing.jpg",
-            time: new Date().toLocaleString(),
-        }))
+            updateItemList({
+                id: Object(router.query.id),
+                title,
+                detail,
+                photo: "/washing.jpg",
+                time: new Date().toLocaleString(),
+            }))
         router.push({ pathname: '/', })
     }
 
     const removeItem = () => {
         dispatch(
-        removeItemList({
-            id: Object(router.query.id),
-            title: '',
-            detail: '',
-            photo: "",
-            time: "",
-        }))
+            removeItemList({
+                id: Object(router.query.id),
+                title: '',
+                detail: '',
+                photo: "",
+                time: "",
+            }))
         router.push({ pathname: '/' })
     }
+
+
+    useEffect(() => {
+        var toggleInputContainer = function (input: any) {
+            if (input.value != "") {
+                input.classList.add('filled');
+            } else {
+                input.classList.remove('filled');
+            }
+        }
+        var inputs = document.getElementsByClassName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            console.log('looped');
+            inputs[i].addEventListener('keyup', function () {
+                toggleInputContainer(this);
+            });
+            toggleInputContainer(inputs[i]);
+        }
+    }, [title,detail]);
+
     return (
         isLoading ? <Layout>Loading...</Layout>
             :
-
             <Layout>
                 <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">
                     <div className="text-4xl text-center mb-4">Edit item</div>
                     <button type="button" onClick={() => router.back()}>←Back</button>
-
-
                     <UploadImage />
-
-                    <div className="mb-4 relative">
-                        <input
-                            value={title}
-                            onChange={inputTextChange}
-                            id="name" type="text" name="name"
-
-                            className="input border border-gray-400 appearance-none rounded w-full px-3 
-                py-3 pt-5 pb-2 focus focus:outline-none focus:border-pink-600 focus:border-2  
-                active:border-pink-600 text-lg" autoFocus />
-
-                        <label htmlFor="name" className="label font-light absolute mb-0 -mt-2 pt-4 pl-3 
-                leading-tighter text-gray-400 mt-2 cursor-text">Title</label>
-                    </div>
-
-                    <div className="mb-4 relative">
-                        <textarea
-                            value={detail}
-                            onChange={textAreaDetailChange}
-                            name="message" id="message" cols={18} rows={12}
-                            className="input border border-gray-400 appearance-none rounded
-                w-full px-3 py-3 pt-5 pb-2 focus focus:outline-none focus:border-pink-600 
-                focus:border-2 active:border-pink-600 text-lg"></textarea>
-                        <label htmlFor="message" className="label font-light absolute mb-0 -mt-2 pt-4 pl-3 
-                leading-tighter text-gray-400 mt-2 cursor-text">Detail</label>
-                    </div>
-
+                    <Input
+                        value={title}
+                        onChange={inputTextChange}
+                    />
+                    <Textarea
+                        value={detail}
+                        onChange={textAreaDetailChange}
+                    />
                     <Button
                         onClick={() => updateItem()}
                         text={"Update item"}
