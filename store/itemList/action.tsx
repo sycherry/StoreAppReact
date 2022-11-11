@@ -1,3 +1,5 @@
+import { AnyAction } from "@reduxjs/toolkit"
+
 export const itemListActionTypes = {
   ADD: 'ADD',
   REMOVE: 'REMOVE',
@@ -12,23 +14,17 @@ export interface ItemList {
   time: string
 }
 
-export const addItemList = (payload: ItemList) => (dispatch: any) => {
-  return dispatch({
+export const addItemList = (payload: ItemList): AnyAction => ({
     type: itemListActionTypes.ADD,
     payload
-  })
-}
+})
 
-export const removeItemList = (payload: ItemList) => (dispatch: any) => {
-  return dispatch({
+export const removeItemList = (payload: ItemList) : AnyAction => ({
     type: itemListActionTypes.REMOVE,
     payload
-  })
-}
+})
 
-export const updateItemList = (payload: ItemList) => (dispatch: any) => {
-  return dispatch({
+export const updateItemList = (payload: ItemList) : AnyAction => ({
     type: itemListActionTypes.UPDATE,
     payload
   })
-}

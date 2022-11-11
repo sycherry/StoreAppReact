@@ -35,24 +35,26 @@ export default function EditItem() {
 
     const updateItem = () => {
 
+        dispatch(
         updateItemList({
             id: Object(router.query.id),
             title,
             detail,
             photo: "/washing.jpg",
             time: new Date().toLocaleString(),
-        })
+        }))
         router.push({ pathname: '/', })
     }
 
     const removeItem = () => {
+        dispatch(
         removeItemList({
             id: Object(router.query.id),
             title: '',
             detail: '',
             photo: "",
             time: "",
-        })
+        }))
         router.push({ pathname: '/' })
     }
     return (

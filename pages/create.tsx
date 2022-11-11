@@ -24,6 +24,7 @@ export default function CreateItem() {
     };
 
     const createItem = () => {
+        dispatch(
             addItemList({
                 id: generateId(),
                 title,
@@ -31,6 +32,7 @@ export default function CreateItem() {
                 photo: "/washing.jpg",
                 time: new Date().toLocaleString()
             })
+        )
         router.push({ pathname: '/' })
     }
     return (
