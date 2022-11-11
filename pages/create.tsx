@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { addItemList } from '../store/itemList/action'
 import Input from "../components/input";
 import Textarea from "../components/textarea";
+import BackButton from "../components/backButton";
 
 export default function CreateItem() {
     const router = useRouter();
@@ -42,21 +43,21 @@ export default function CreateItem() {
         <Layout>
             <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">
                 <div className="text-4xl text-center mb-4">Create item</div>
-                <button type="button" onClick={() => router.back()}>←Back</button>
-                <UploadImage />
-                <Input
-                    value={title}
-                    onChange={inputTextChange}
-                />
-                <Textarea
-                    value={detail}
-                    onChange={textAreaDetailChange}
-                />
-                <Button
-                    onClick={() => createItem()}
-                    text={"Create Item"}
-                    type={"default"}
-                />
+                <BackButton router={router} />
+                    <UploadImage />
+                    <Input
+                        value={title}
+                        onChange={inputTextChange}
+                    />
+                    <Textarea
+                        value={detail}
+                        onChange={textAreaDetailChange}
+                    />
+                    <Button
+                        onClick={() => createItem()}
+                        text={"Create Item"}
+                        type={"default"}
+                    />
             </article>
         </Layout>
     );

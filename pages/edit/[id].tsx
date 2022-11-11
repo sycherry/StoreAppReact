@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { updateItemList, removeItemList } from '../../store/itemList/action'
 import Input from "../../components/input";
 import Textarea from "../../components/textarea";
+import BackButton from "../../components/backButton";
 
 export default function EditItem() {
 
@@ -67,7 +68,7 @@ export default function EditItem() {
             <Layout>
                 <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">
                     <div className="text-4xl text-center mb-4">Edit item</div>
-                    <button type="button" onClick={() => router.back()}>←Back</button>
+                    <BackButton router={router} />
                     <UploadImage />
                     <Input
                         value={title}
