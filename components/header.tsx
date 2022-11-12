@@ -12,7 +12,7 @@ export default function Header(props: any) {
         text-4xl md:text-5xl lg:text-6xl mb-4 text-center">Washing mashine store</h1>
                     </Link>
                     <p className="mb-1 text-center">This is demo apprication,
-                        you can create, update, delete product.
+                        you can create, update, delete item.
                         <span className="md:block ml-1 md:ml-0">Let&apos;s try🙌</span></p>
                 </>
                 :

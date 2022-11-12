@@ -22,11 +22,12 @@ export default function EditItem() {
         const newTodoList = loadingItemList.filter((item: any) => item.id == id)
         setTitle(newTodoList[0]?.title);
         setDetail(newTodoList[0]?.detail);
+        setPhoto(newTodoList[0]?.photo);
         setIsLoading(false);
 
     }, [router.isReady, router.query, loadingItemList])
 
-    const [files, setFiles] = useState([])
+    const [photo, setPhoto] = useState('')
     const [title, setTitle] = useState('')
     const [detail, setDetail] = useState('')
 
@@ -69,7 +70,8 @@ export default function EditItem() {
                 <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">
                     <div className="text-4xl text-center mb-4">Edit item</div>
                     <BackButton router={router} />
-                    <UploadImage />
+                    <UploadImage
+                        photo={photo} />
                     <Input
                         value={title}
                         onChange={inputTextChange}

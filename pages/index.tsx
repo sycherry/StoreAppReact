@@ -22,26 +22,33 @@ export default function Home() {
       :
       <Layout>
         <article className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10">
-          <div className="mx-auto flex flex-wrap flex-set">
-            {sortedItemList && sortedItemList.map((item: any) => (
-              <Link key={item.id}
-                href={`/products/${item.id}`}
-                passHref
-                className="flex-item cursor-pointer
+
+          {sortedItemList.length === 0 ?
+            <div className="my-48">
+              <p className="text-center">Please create item🌈🌺</p></div>
+            :
+            <div className="mx-auto flex flex-wrap flex-set">
+              {sortedItemList.map((item: any) => (
+                <Link
+                  key={item.id}
+                  href={`/products/${item.id}`}
+                  passHref
+                  className="flex-item cursor-pointer
           mr-6 md:mr-8 lg:mr-10 
           mb-6 md:mb-8 lg:mb-10">
-                <Image
-                  src={item.photo}
-                  alt={`Washing machine ${item.title}`}
-                  width={800}
-                  height={800}
-                  className="border border-gray-800 hover:shadow-lg"
-                  objectFit="cover"
-                />
-                <h2 className="text-sm md:text-base mt-2">{item.title}</h2>
-              </Link>
-            ))}
-          </div>
+                  <Image
+                    src={item.photo}
+                    alt={`Washing machine ${item.title}`}
+                    width={800}
+                    height={800}
+                    className="border border-gray-800 hover:shadow-lg"
+                    objectFit="cover"
+                  />
+                  <h2 className="text-sm md:text-base mt-2">{item.title}</h2>
+                </Link>
+              ))}
+            </div>
+          }
         </article>
       </Layout>
   );

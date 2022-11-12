@@ -19,7 +19,7 @@ Simple washing machine apprication utilizing React to design and create🌈
 - Run `npm run dev`
 
 ## deploy
-https://store-app-react-p079cx2mk-sayaxxx.vercel.app/
+https://store-app-react-six.vercel.app/
 
 ## Support
 
