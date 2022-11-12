@@ -18,7 +18,7 @@ export default function Home() {
   }, [loadingItemList]);
 
   return (
-    isLoading ? <Layout>Loading...</Layout>
+    isLoading ? <Layout><p>Loading...</p></Layout>
       :
       <Layout>
         <article className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10">

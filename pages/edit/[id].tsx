@@ -9,17 +9,18 @@ import { updateItemList, removeItemList } from '../../store/itemList/action'
 import Input from "../../components/input";
 import Textarea from "../../components/textarea";
 import BackButton from "../../components/backButton";
+import { ItemType } from "../../type/ItemType";
 
 export default function EditItem() {
 
     const router = useRouter();
     const dispatch = useDispatch();
     const loadingItemList = useSelector((state: any) => state.itemList);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         const { id } = router.query;
-        const newTodoList = loadingItemList.filter((item: any) => item.id == id)
+        const newTodoList = loadingItemList.filter((item: ItemType) => item.id == id)
         setTitle(newTodoList[0]?.title);
         setDetail(newTodoList[0]?.detail);
         setPhoto(newTodoList[0]?.photo);
@@ -27,9 +28,9 @@ export default function EditItem() {
 
     }, [router.isReady, router.query, loadingItemList])
 
-    const [photo, setPhoto] = useState('')
-    const [title, setTitle] = useState('')
-    const [detail, setDetail] = useState('')
+    const [photo, setPhoto] = useState<string>('')
+    const [title, setTitle] = useState<string>('')
+    const [detail, setDetail] = useState<string>('')
 
     const inputTextChange = (e: any) => {
         setTitle(e.target.value)
@@ -64,7 +65,7 @@ export default function EditItem() {
     }
 
     return (
-        isLoading ? <Layout>Loading...</Layout>
+        isLoading ? <Layout><p>Loading...</p></Layout>
             :
             <Layout>
                 <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">

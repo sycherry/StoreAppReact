@@ -45,7 +45,8 @@ export default function CreateItem() {
             <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">
                 <div className="text-4xl text-center mb-4">Create item</div>
                 <BackButton router={router} />
-                    <UploadImage/>
+                    <UploadImage
+                    photo={''}/>
                     <Input
                         value={title}
                         onChange={inputTextChange}
