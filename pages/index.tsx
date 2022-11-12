@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux';
 export default function Home() {
   const loadingItemList = useSelector((state: any) => state.itemList);
 
-  const [itemList, setItemList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [itemList, setItemList] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const sortedItemList = [...itemList].sort((a: any, b: any) => a.time < b.time ? 1 : -1)
 

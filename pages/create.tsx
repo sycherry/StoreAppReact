@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Layout from '../components/layout'
 import Button from '../components/button'
 import { useRouter } from 'next/router';
@@ -12,8 +12,9 @@ import BackButton from "../components/backButton";
 export default function CreateItem() {
     const router = useRouter();
     const dispatch = useDispatch();
-    const [title, setTitle] = useState('')
-    const [detail, setDetail] = useState('')
+
+    const [title, setTitle] = useState<string>('')
+    const [detail, setDetail] = useState<string>('')
 
     const inputTextChange = (e: any) => {
         setTitle(e.target.value)

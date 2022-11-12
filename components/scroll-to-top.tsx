@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 export default function ScrollToTop() {
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,

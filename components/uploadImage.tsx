@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export default function UploadImage(props: any) {
     const { photo } = props
 
-    const [uploadPhoto, setUploadPhoto] = useState(photo);
+    const [uploadPhoto, setUploadPhoto] = useState<string>(photo);
 
     console.log(uploadPhoto)
     const changeHandler = (event: any) => {
