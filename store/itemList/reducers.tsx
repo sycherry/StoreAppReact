@@ -1,13 +1,6 @@
 import { itemListActionTypes } from './action'
 import { initialData } from '../../initialData'
-
-export interface ItemList {
-  id: string
-  title: string
-  detail: string
-  photo: string
-  time: string
-}
+import { ItemType } from '../../type/ItemType'
 
 type Action = {
   type: string
@@ -16,7 +9,7 @@ type Action = {
 
 const itemListInitialState = initialData
 
-export default function reducer(state: ItemList[] = itemListInitialState, action: Action) {
+export default function reducer(state: ItemType[] = itemListInitialState, action: Action) {
   console.log("action", action)
   let newData
   switch (action.type) {
