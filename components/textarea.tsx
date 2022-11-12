@@ -1,7 +1,7 @@
 import React from 'react';
+import { TextareaProps } from './TextareaProps';
 
-export default function Textarea(props: any) {
-    const { value, onChange } = props
+export default function Textarea({ value, onChange } : TextareaProps) {
     return (
         <div className="mb-4 relative">
             <label htmlFor="name" className="label font-light cursor-text">Detail</label>

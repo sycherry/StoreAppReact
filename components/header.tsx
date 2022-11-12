@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
+import { HeaderProps } from './HeaderProps';
 
-export default function Header(props: any) {
-    const { router } = props
+export default function Header( { router } : HeaderProps) {
     return (
         <header className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10 my-10">
             {router.pathname === '/' || router.pathname.startsWith('/products') ?

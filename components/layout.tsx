@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import Header from './header'
 import Footer from './footer'
 import FloationgActionButton from './floationg-action-button'
+import { LayoutProps } from './LayoutProps';
 
-export default function Layout(props: any) {
-    const { children } = props
+export default function Layout( {children} : LayoutProps) {
     const router = useRouter();
     return (
         <div>

@@ -1,8 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 
-export default function Breadcrumb(props: any) {
-  const { post } = props
+interface BreadcrumbProps {
+  post: {
+    title : string
+    id: string
+  }
+}
+
+export default function Breadcrumb( { post } : BreadcrumbProps ) {
   return (
     <nav aria-label="Breadcrumb" className="mb-4">
       <ol role="list" className="mx-auto flex max-w-2xl items-center 
@@ -20,7 +26,7 @@ export default function Breadcrumb(props: any) {
         </li>
 
         <li className="text-sm">
-          <a href="#" aria-current="page" className="font-medium text-gray-500 
+          <a href={`products/${post.id}`} aria-current="page" className="font-medium text-gray-500 
             hover:text-gray-600">{post.title}</a>
         </li>
       </ol>

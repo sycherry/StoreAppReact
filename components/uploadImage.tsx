@@ -1,19 +1,16 @@
 import React, { useState } from "react";
+import { UploadImageProps } from "./UploadImageProps";
 
-export default function UploadImage(props: any) {
-    const { photo } = props
+export default function UploadImage( { photo } : UploadImageProps) {
 
     const [uploadPhoto, setUploadPhoto] = useState<string>(photo);
-
-    console.log(uploadPhoto)
     const changeHandler = (event: any) => {
         setUploadPhoto(URL.createObjectURL(event.target.files[0]))
     }
 
     return (
         <div>
-            <div className="flex flex-col items-center mb-10">
-                
+            <div className="flex flex-col items-center mb-10">     
                     <label className="border border-black mb-10 cursor-pointer">
                     {uploadPhoto ?
                         <div 
@@ -36,16 +33,14 @@ export default function UploadImage(props: any) {
                             }} />
                             }
                         <input type="file" className="hidden" onChange={changeHandler} />
-                        
                     </label>
-                    
                 {uploadPhoto &&
                 <div className="flex space-x-4">
                     <button onClick={() => setUploadPhoto('')}
                         className="px-4 py-2 text-white bg-red-500 rounded shadow-xl">
                         Delete image</button>
-                </div>}
-
+                </div>
+                }
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
+import { InputProps } from './InputProps';
 
-export default function Input(props: any) {
-  const { value, onChange } = props
+export default function Input( { value, onChange } : InputProps) {
   return (
     <div className="mb-4 relative">
       <label htmlFor="name" className="label font-light cursor-text">Title</label>

@@ -1,8 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
+import { ButtonProps } from './ButtonProps';
 
-export default function Button(props: any) {
-    const { text, onClick, type } = props
+export default function Button( { text, onClick, type } : ButtonProps ) {
     return (
         <>
             {type == "default" &&
