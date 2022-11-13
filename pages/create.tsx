@@ -34,7 +34,7 @@ export default function CreateItem() {
                 title,
                 detail,
                 photo: "/washing.jpg",
-                time: new Date().toLocaleString()
+                time: new Date()
             })
         )
         router.push({ pathname: '/' })

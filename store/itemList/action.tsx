@@ -11,7 +11,7 @@ export interface ItemList {
   title: string
   detail: string
   photo: string
-  time: string
+  time: Date
 }
 
 export const addItemList = (payload: ItemList): AnyAction => ({
