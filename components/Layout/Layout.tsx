@@ -1,10 +1,10 @@
 import React from 'react';
 import Head from 'next/head'
 import { useRouter } from 'next/router';
-import Header from './Header'
-import Footer from './Footer/Footer'
-import FloationgActionButton from './Floationg-action-button'
-import { LayoutProps } from './LayoutProps';
+import Header from '../Header/Header'
+import Footer from '../Footer'
+import FloationgActionButton from '../FloatingActionButton/FloatingActionButton'
+import { LayoutProps } from './Layout.props';
 
 export default function Layout( {children} : LayoutProps) {
     const router = useRouter();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextareaProps } from './TextareaProps';
+import { TextareaProps } from './Textarea.props';
 
 export default function Textarea({ value, onChange } : TextareaProps) {
     return (

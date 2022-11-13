@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputProps } from './InputProps';
+import { InputProps } from './Input.props';
 
 export default function Input( { value, onChange } : InputProps) {
   return (

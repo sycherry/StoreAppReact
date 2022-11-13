@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UploadImageProps } from "./UploadImageProps";
+import { UploadImageProps } from "./UploadImage.props";
 
 export default function UploadImage( { photo } : UploadImageProps) {
 

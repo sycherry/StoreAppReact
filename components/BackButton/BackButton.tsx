@@ -1,5 +1,5 @@
 import React from 'react';
-import { BackButtonProps } from './BackButtonProps';
+import { BackButtonProps } from './BackButton.props';
 
 export default function BackButton({ router }: BackButtonProps) {
   return (

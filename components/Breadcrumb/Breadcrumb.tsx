@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { BreadcrumbProps } from './BreadcrumbProps';
+import { BreadcrumbProps } from './Breadcrumb.props';
 
 export default function Breadcrumb( { post } : BreadcrumbProps ) {
   return (

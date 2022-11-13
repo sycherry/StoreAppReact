@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonProps } from './ButtonProps';
+import { ButtonProps } from './Button.props';
 
 export default function Button( { text, onClick, type } : ButtonProps ) {
     return (

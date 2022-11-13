@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { FloatingActionButtonProps } from './FloatingActionButtonProps';
+import { FloatingActionButtonProps } from './FloatingActionButton.props';
 
 export default function FloationgActionButton( { router } : FloatingActionButtonProps) {
     return (

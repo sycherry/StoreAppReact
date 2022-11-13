@@ -1,5 +1,5 @@
 import React from 'react';
-import ScrollToTop from '../scroll-to-top'
+import ScrollToTop from './ScrollToTop'
 import Link from 'next/link';
 
 export default function Footer() {

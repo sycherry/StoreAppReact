@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { HeaderProps } from './HeaderProps';
+import { HeaderProps } from './Header.props';
 
 export default function Header( { router } : HeaderProps) {
     return (
