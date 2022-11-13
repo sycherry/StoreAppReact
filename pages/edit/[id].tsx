@@ -1,14 +1,14 @@
 import React, { FC, useState, useEffect } from "react";
-import Layout from '../../components/layout'
-import Button from '../../components/button'
-import UploadImage from '../../components/uploadImage'
+import Layout from '../../components/Layout'
+import Button from '../../components/Button'
+import UploadImage from '../../components/UploadImage'
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux';
 import { updateItemList, removeItemList } from '../../store/itemList/action'
-import Input from "../../components/input";
-import Textarea from "../../components/textarea";
-import BackButton from "../../components/backButton";
+import Input from "../../components/Input";
+import Textarea from "../../components/Textarea";
+import BackButton from "../../components/BackButton";
 import { ItemType } from "../../type/ItemType";
 
 export default function EditItem() {

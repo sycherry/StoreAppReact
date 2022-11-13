@@ -1,9 +1,9 @@
 import React from 'react';
 import Head from 'next/head'
 import { useRouter } from 'next/router';
-import Header from './header'
-import Footer from './footer'
-import FloationgActionButton from './floationg-action-button'
+import Header from './Header'
+import Footer from './Footer/Footer'
+import FloationgActionButton from './Floationg-action-button'
 import { LayoutProps } from './LayoutProps';
 
 export default function Layout( {children} : LayoutProps) {

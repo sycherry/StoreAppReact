@@ -1,8 +1,8 @@
 import React ,{ useEffect, useState } from 'react';
 import Image from 'next/image'
-import Layout from '../../components/layout';
-import Breadcrumb from '../../components/breadcrumb';
-import Button from '../../components/button';
+import Layout from '../../components/Layout';
+import Breadcrumb from '../../components/Breadcrumb';
+import Button from '../../components/Button';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { ItemType } from '../../type/ItemType';

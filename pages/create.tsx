@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Layout from '../components/layout'
-import Button from '../components/button'
+import Layout from '../components/Layout'
+import Button from '../components/Button'
 import { useRouter } from 'next/router';
-import UploadImage from '../components/uploadImage'
+import UploadImage from '../components/UploadImage'
 import { useDispatch } from 'react-redux';
 import { addItemList } from '../store/itemList/action'
-import Input from "../components/input";
-import Textarea from "../components/textarea";
-import BackButton from "../components/backButton";
+import Input from "../components/Input";
+import Textarea from "../components/Textarea";
+import BackButton from "../components/BackButton";
 
 export default function CreateItem() {
     const router = useRouter();

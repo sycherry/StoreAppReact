@@ -1,12 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-
-interface BreadcrumbProps {
-  post: {
-    title : string
-    id: string
-  }
-}
+import { BreadcrumbProps } from './BreadcrumbProps';
 
 export default function Breadcrumb( { post } : BreadcrumbProps ) {
   return (
