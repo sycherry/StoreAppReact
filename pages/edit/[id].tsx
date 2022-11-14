@@ -32,12 +32,17 @@ export default function EditItem() {
     const [title, setTitle] = useState<string>('')
     const [detail, setDetail] = useState<string>('')
 
+    const inputPhotoChange = (e: any) => {
+        setPhoto(URL.createObjectURL(e.target.files[0]))
+    }
+
     const inputTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value)
     }
     const textAreaDetailChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setDetail(e.target.value)
     }
+
 
     const updateItem = () => {
 
@@ -46,13 +51,14 @@ export default function EditItem() {
                 id: router.query.id,
                 title,
                 detail,
-                photo: "/washing.jpg",
-                time: new Date()
+                photo: photo ? photo : "/washing.jpg",
+                time: new Date().toLocaleString()
             }))
         router.push({ pathname: '/', })
     }
 
     const removeItem = () => {
+        console.log("router.query.id",router.query.id)
         dispatch(
             removeItemList(router.query.id as string))
         router.push({ pathname: '/' })
@@ -66,7 +72,9 @@ export default function EditItem() {
                     <div className="text-4xl text-center mb-4">Edit item</div>
                     <BackButton router={router} />
                     <UploadImage
-                        photo={photo} />
+                    photo={photo}
+                    onChange={inputPhotoChange}
+                    />
                     <Input
                         value={title}
                         onChange={inputTextChange}

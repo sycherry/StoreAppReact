@@ -7,11 +7,13 @@ const itemListInitialState = initialData
 
 export default function reducer(state: ItemType[] = itemListInitialState, action: ActionType) {
   console.log("action", action)
+  //console.log("action.payload.id",action.payload.id)
   let newData
   switch (action.type) {
     case itemListActionTypes.ADD:
       return [...state, action.payload]
     case itemListActionTypes.UPDATE:
+      console.log("更新しました",action.payload.id)
       return (
         newData = state.map(item => {
           if (item.id == action.payload.id) {
@@ -21,9 +23,11 @@ export default function reducer(state: ItemType[] = itemListInitialState, action
         })
       )
     case itemListActionTypes.REMOVE:
+    console.log("削除しました",action.payload)
       return (
-        state.filter((id => id !== action.payload.id))
+        state.filter((item => item.id !== action.payload))
       )
+      
     default:
       return state
   }

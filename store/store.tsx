@@ -1,7 +1,30 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { HYDRATE, createWrapper } from 'next-redux-wrapper'
+import { initialData } from '../initialData';
 import { ActionType } from './itemList/ActionType';
 import itemList from './itemList/reducers'
+
+const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem("itemList");
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+const saveState = (state:any) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("itemList", serializedState);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 
 const combinedReducer = combineReducers({
   itemList
@@ -21,9 +44,29 @@ const reducer = (state: any, action: ActionType) => {
   }
 }
 
+// const initStore = () => {
+//   return configureStore({
+//     reducer,
+//     preloadedState: loadState(),
+//   });
+// }
+
 const initStore = () => {
-  return configureStore({
+  const initialState = loadState() || initialData;
+  const store = configureStore({
     reducer,
+    preloadedState: initialState,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+      immutableCheck: false,
+      serializableCheck: false
+  }),
+})
+
+  store.subscribe(() => {
+    saveState(store.getState())
   });
+
+  return store;
 }
+
 export const wrapper = createWrapper(initStore)

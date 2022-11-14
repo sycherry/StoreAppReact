@@ -13,8 +13,13 @@ export default function CreateItem() {
     const router = useRouter();
     const dispatch = useDispatch();
 
+    const [photo, setPhoto] = useState<string>('')
     const [title, setTitle] = useState<string>('')
     const [detail, setDetail] = useState<string>('')
+
+    const inputPhotoChange = (e: any) => {
+        setPhoto(URL.createObjectURL(e.target.files[0]))
+    }
 
     const inputTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value)
@@ -33,8 +38,8 @@ export default function CreateItem() {
                 id: generateId(),
                 title,
                 detail,
-                photo: "/washing.jpg",
-                time: new Date()
+                photo: photo ? photo : "/washing.jpg",
+                time: new Date().toLocaleString()
             })
         )
         router.push({ pathname: '/' })
@@ -46,7 +51,9 @@ export default function CreateItem() {
                 <div className="text-4xl text-center mb-4">Create item</div>
                 <BackButton router={router} />
                     <UploadImage
-                    photo={''}/>
+                    photo={photo}
+                    onChange={inputPhotoChange}
+                    />
                     <Input
                         value={title}
                         onChange={inputTextChange}
