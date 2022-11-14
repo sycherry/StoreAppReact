@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head'
 import { useRouter } from 'next/router';
 import Header from '../Header/Header'
-import Footer from '../Footer'
+import Footer from '../Footer/Footer'
 import FloationgActionButton from '../FloatingActionButton/FloatingActionButton'
 import { LayoutProps } from './Layout.props';
 
