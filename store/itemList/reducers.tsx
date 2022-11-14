@@ -26,7 +26,7 @@ export default function reducer(state: ItemType[] = itemListInitialState, action
       )
     case itemListActionTypes.REMOVE:
       return (
-        state.filter((item => item.id !== action.payload.id))
+        state.filter((id => id !== action.payload.id))
       )
     default:
       return state

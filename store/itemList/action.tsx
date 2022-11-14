@@ -6,7 +6,7 @@ export const itemListActionTypes = {
   UPDATE: 'UPDATE'
 }
 
-export interface ItemList {
+export interface Item {
   id: any
   title: string
   detail: string
@@ -14,17 +14,17 @@ export interface ItemList {
   time: Date
 }
 
-export const addItemList = (payload: ItemList): AnyAction => ({
+export const addItemList = (payload: Item): AnyAction => ({
     type: itemListActionTypes.ADD,
     payload
 })
 
-export const removeItemList = (payload: ItemList) : AnyAction => ({
+export const removeItemList = (payload: string) : AnyAction => ({
     type: itemListActionTypes.REMOVE,
     payload
 })
 
-export const updateItemList = (payload: ItemList) : AnyAction => ({
+export const updateItemList = (payload: Item) : AnyAction => ({
     type: itemListActionTypes.UPDATE,
     payload
   })
