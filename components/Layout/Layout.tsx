@@ -5,7 +5,6 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import FloationgActionButton from '../FloatingActionButton/FloatingActionButton'
 import { LayoutProps } from './Layout.props';
-
 export default function Layout( {children} : LayoutProps) {
     const router = useRouter();
     return (
