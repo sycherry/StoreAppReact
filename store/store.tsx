@@ -1,12 +1,13 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { HYDRATE, createWrapper } from 'next-redux-wrapper'
+import { ActionType } from './itemList/ActionType';
 import itemList from './itemList/reducers'
 
 const combinedReducer = combineReducers({
   itemList
 });
 
-const reducer = (state: any, action: any) => {
+const reducer = (state: any, action: ActionType) => {
   if (action.type === HYDRATE) {
     const nextState = {
       ...state,

@@ -1,15 +1,11 @@
 import { itemListActionTypes } from './action'
 import { initialData } from '../../initialData'
 import { ItemType } from '../../type/ItemType'
-
-type Action = {
-  type: string
-  payload: any
-}
+import { ActionType } from './ActionType'
 
 const itemListInitialState = initialData
 
-export default function reducer(state: ItemType[] = itemListInitialState, action: Action) {
+export default function reducer(state: ItemType[] = itemListInitialState, action: ActionType) {
   console.log("action", action)
   let newData
   switch (action.type) {
