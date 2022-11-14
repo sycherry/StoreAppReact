@@ -16,10 +16,10 @@ export default function CreateItem() {
     const [title, setTitle] = useState<string>('')
     const [detail, setDetail] = useState<string>('')
 
-    const inputTextChange = (e: any) => {
+    const inputTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value)
     }
-    const textAreaDetailChange = (e: any) => {
+    const textAreaDetailChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setDetail(e.target.value)
     }
 
