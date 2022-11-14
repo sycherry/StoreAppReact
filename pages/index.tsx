@@ -10,7 +10,7 @@ export default function Home() {
   const [itemList, setItemList] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const sortedItemList = [...itemList].sort((a: any, b: any) => a.time < b.time ? 1 : -1)
+  const sortedItemList = itemList.sort((a: any, b: any) => a.time < b.time ? 1 : -1)
 
   useEffect(() => {
     setItemList(loadingItemList);
