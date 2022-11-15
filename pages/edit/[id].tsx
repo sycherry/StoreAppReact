@@ -46,7 +46,7 @@ export default function EditItem() {
                 id: router.query.id,
                 title: value.title,
                 detail: value.detail,
-                photo: value.photo ? value.photo : "/washing.jpg",
+                photo: value.photo ? value.photo : "/initialImage.jpg",
                 time: new Date().toLocaleString()
             }))
         router.push({ pathname: '/', })

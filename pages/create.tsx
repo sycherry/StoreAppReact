@@ -31,7 +31,7 @@ export default function CreateItem() {
                 id: generateId(),
                 title: value.title,
                 detail: value.detail,
-                photo: value.photo,
+                photo: value.photo ? value.photo : "/initialImage.jpg",
                 time: new Date().toLocaleString()
             })
         )
