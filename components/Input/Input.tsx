@@ -12,7 +12,7 @@ export default function Input({ value, onChange, onBlur, errors, touched }: Inpu
         name="title"
         className="input border border-gray-400 appearance-none rounded w-full px-3 
     py-3 pb-2 focus focus:outline-none focus:border-indigo-600 focus:border-2  
-    active:border-indigo-600 text-lg" autoFocus />
+    active:border-indigo-600 text-lg" />
       {errors && touched ? (
         <p className="mt-2 text-sm text-red-600 dark:text-red-500">
           <span className="font-medium">Oops! </span>

@@ -3,5 +3,5 @@ export interface ItemType {
   id: string;
   photo: string;
   detail: string;
-  time: string;
+  time: Date;
 };

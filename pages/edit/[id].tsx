@@ -42,7 +42,7 @@ export default function EditItem() {
                 title: value.title,
                 detail: value.detail,
                 photo: value.photo ? value.photo : "/initialImage.jpg",
-                time: new Date().toLocaleString()
+                time: new Date()
             }));
         router.push({ pathname: '/', });
         toast.success('Item updated successfully');

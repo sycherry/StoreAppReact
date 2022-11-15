@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Layout from '../components/Layout/Layout';
 import { useSelector } from 'react-redux';
 import LoadingIndicator from "../components/LoadingIndicator";
+import { useRouter } from 'next/router';
 
 export default function Home() {
   const loadingItemList = useSelector((state: any) => state.itemList);
@@ -11,10 +12,9 @@ export default function Home() {
   const [itemList, setItemList] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const sortedItemList = itemList.sort((a: any, b: any) => a.time < b.time ? 1 : -1);
-
   useEffect(() => {
-    setItemList(loadingItemList);
+    const sortedItemList = loadingItemList.sort((a: any, b: any) => new Date(a.time) < new Date(b.time) ? 1 : -1);
+    setItemList(sortedItemList);
     setIsLoading(false);
   }, [loadingItemList]);
 
@@ -22,13 +22,13 @@ export default function Home() {
     isLoading ? <Layout><LoadingIndicator /></Layout> :
       <Layout>
         <article className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10">
-          {sortedItemList.length === 0 ?
+          {itemList.length === 0 ?
             <div className="my-48">
               <p className="text-center">Please create item🌈🌺</p>
             </div>
             :
             <div className="mx-auto flex flex-wrap flex-set">
-              {sortedItemList.map((item: any) => (
+              {itemList.map((item: any) => (
                 <Link
                   key={item.id}
                   href={`/products/${item.id}`}

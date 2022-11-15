@@ -27,7 +27,7 @@ export default function CreateItem() {
                 title: value.title,
                 detail: value.detail,
                 photo: value.photo ? value.photo : "/initialImage.jpg",
-                time: new Date().toLocaleString()
+                time: new Date()
             })
         );
         router.push({ pathname: '/' });

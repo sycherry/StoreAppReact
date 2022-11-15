@@ -16,7 +16,8 @@ export default function ProductItem() {
     title: '',
     id: '',
     photo: '',
-    detail: ''
+    detail: '',
+    time: new Date(),
   });
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
