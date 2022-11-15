@@ -1,5 +1,5 @@
 export interface ButtonProps {
     text: string;
-    onClick: () => void;
+    onClick: any;
     type: "text" | "default";
-}
+};

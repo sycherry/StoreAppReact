@@ -8,41 +8,35 @@ import { addItemList } from '../store/itemList/action'
 import Input from "../components/Input/Input";
 import Textarea from "../components/Textarea/Textarea";
 import BackButton from "../components/BackButton/BackButton";
+import toast from 'react-hot-toast';
+import { Formik, Form } from 'formik';
+import { initialValues, ItemSchema } from "../schema/ItemSchema";
 
 export default function CreateItem() {
     const router = useRouter();
     const dispatch = useDispatch();
 
     const [photo, setPhoto] = useState<string>('')
-    const [title, setTitle] = useState<string>('')
-    const [detail, setDetail] = useState<string>('')
-
     const inputPhotoChange = (e: any) => {
         setPhoto(URL.createObjectURL(e.target.files[0]))
-    }
-
-    const inputTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.target.value)
-    }
-    const textAreaDetailChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setDetail(e.target.value)
     }
 
     const generateId = () => {
         return Date.now().toString() + "_" + (Math.random() * 1e6).toFixed(0).toString();
     };
 
-    const createItem = () => {
+    const createItem = (value: any) => {
         dispatch(
             addItemList({
                 id: generateId(),
-                title,
-                detail,
+                title: value.title,
+                detail: value.detail,
                 photo: photo ? photo : "/washing.jpg",
                 time: new Date().toLocaleString()
             })
         )
         router.push({ pathname: '/' })
+        toast.success('Item added successfully');
     }
 
     return (
@@ -50,23 +44,39 @@ export default function CreateItem() {
             <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">
                 <div className="text-4xl text-center mb-4">Create item</div>
                 <BackButton router={router} />
-                    <UploadImage
+                <UploadImage
+                    setPhoto={setPhoto}
                     photo={photo}
                     onChange={inputPhotoChange}
-                    />
-                    <Input
-                        value={title}
-                        onChange={inputTextChange}
-                    />
-                    <Textarea
-                        value={detail}
-                        onChange={textAreaDetailChange}
-                    />
-                    <Button
-                        onClick={() => createItem()}
-                        text={"Create Item"}
-                        type={"default"}
-                    />
+                />
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={ItemSchema}
+                    onSubmit={(value) => {
+                        createItem(value)
+                    }}
+                >
+                    {(formik) => (
+                        <Form>
+                            <Input
+                                errors={formik.errors.title}
+                                touched={formik.touched.title}
+                                value={formik.values.title}
+                                onChange={formik.handleChange("title")}
+                                onBlur={formik.handleBlur("title")} />
+                            <Textarea
+                                errors={formik.errors.detail}
+                                touched={formik.touched.detail}
+                                value={formik.values.detail}
+                                onChange={formik.handleChange("detail")}
+                                onBlur={formik.handleBlur("detail")} />
+                            <Button
+                                onClick={null}
+                                text={"Create Item"}
+                                type={"default"} />
+                        </Form>
+                    )}
+                </Formik>
             </article>
         </Layout>
     );

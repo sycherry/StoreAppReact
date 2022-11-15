@@ -3,4 +3,4 @@ export interface BreadcrumbProps {
     title: string;
     id: string;
   };
-}
+};

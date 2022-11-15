@@ -1,6 +1,7 @@
 import React from 'react';
-import ScrollToTop from '../ScrollToTop'
+import ScrollToTop from './ScrollToTop'
 import Link from 'next/link';
+import { Toaster } from 'react-hot-toast';
 
 export default function Footer() {
     return (
@@ -9,6 +10,7 @@ export default function Footer() {
             <p className="text-sm">
                 &copy; 2022 <Link className="hover:underline" href={`/`}>Sayadesign.art</Link>
             </p>
+            <Toaster />
         </footer>
     );
 }

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Layout from '../../components/Layout/Layout'
 import Button from '../../components/Button/Button'
 import UploadImage from '../../components/UploadImage/UploadImage'
@@ -10,6 +10,9 @@ import Input from "../../components/Input/Input";
 import Textarea from "../../components/Textarea/Textarea";
 import BackButton from "../../components/BackButton/BackButton";
 import { ItemType } from "../../type/ItemType";
+import toast from 'react-hot-toast';
+import { Formik, Form } from 'formik';
+import { ItemSchema } from "../../schema/ItemSchema";
 
 export default function EditItem() {
 
@@ -18,50 +21,43 @@ export default function EditItem() {
     const loadingItemList = useSelector((state: any) => state.itemList);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    useEffect(() => {
-        const { id } = router.query;
-        const newTodoList = loadingItemList.filter((item: ItemType) => item.id == id)
-        setTitle(newTodoList[0]?.title);
-        setDetail(newTodoList[0]?.detail);
-        setPhoto(newTodoList[0]?.photo);
-        setIsLoading(false);
-
-    }, [router.isReady, router.query, loadingItemList])
-
-    const [photo, setPhoto] = useState<string>('')
     const [title, setTitle] = useState<string>('')
     const [detail, setDetail] = useState<string>('')
+    const [photo, setPhoto] = useState<string>('')
+
+    console.log("photo",photo)
+
+    useEffect(() => {
+        const { id } = router.query;
+        const newItemList = loadingItemList.filter((item: ItemType) => item.id == id)
+        setTitle(newItemList[0]?.title)
+        setDetail(newItemList[0]?.detail)
+        setPhoto(newItemList[0]?.photo);
+        setIsLoading(false);
+    }, [router.query, loadingItemList])
 
     const inputPhotoChange = (e: any) => {
         setPhoto(URL.createObjectURL(e.target.files[0]))
     }
 
-    const inputTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.target.value)
-    }
-    const textAreaDetailChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setDetail(e.target.value)
-    }
-
-
-    const updateItem = () => {
-
+    const updateItem = (value: any) => {
         dispatch(
             updateItemList({
                 id: router.query.id,
-                title,
-                detail,
+                title: value.title,
+                detail: value.detail,
                 photo: photo ? photo : "/washing.jpg",
                 time: new Date().toLocaleString()
             }))
         router.push({ pathname: '/', })
+        toast.success('Item updated successfully');
     }
 
     const removeItem = () => {
-        console.log("router.query.id",router.query.id)
         dispatch(
             removeItemList(router.query.id as string))
         router.push({ pathname: '/' })
+        toast.success('Item deleted successfully');
     }
 
     return (
@@ -72,21 +68,41 @@ export default function EditItem() {
                     <div className="text-4xl text-center mb-4">Edit item</div>
                     <BackButton router={router} />
                     <UploadImage
-                    photo={photo}
-                    onChange={inputPhotoChange}
+                        setPhoto={setPhoto}
+                        photo={photo}
+                        onChange={inputPhotoChange}
                     />
-                    <Input
-                        value={title}
-                        onChange={inputTextChange}
-                    />
-                    <Textarea
-                        value={detail}
-                        onChange={textAreaDetailChange}
-                    />
-                    <Button
-                        onClick={() => updateItem()}
-                        text={"Update item"}
-                        type={"default"} />
+                    <Formik
+                        initialValues={{
+                            title: title,
+                            detail: detail,
+                        }}
+                        validationSchema={ItemSchema}
+                        onSubmit={(value) => {
+                            updateItem(value)
+                        }}
+                    >
+                        {(formik) => (
+                            <Form>
+                                <Input
+                                    errors={formik.errors.title}
+                                    touched={formik.touched.title}
+                                    value={formik.values.title}
+                                    onChange={formik.handleChange("title")}
+                                    onBlur={formik.handleBlur("title")} />
+                                <Textarea
+                                    errors={formik.errors.detail}
+                                    touched={formik.touched.detail}
+                                    value={formik.values.detail}
+                                    onChange={formik.handleChange("detail")}
+                                    onBlur={formik.handleBlur("detail")} />
+                                <Button
+                                    onClick={null}
+                                    text={"Update item"}
+                                    type={"default"} />
+                            </Form>
+                        )}
+                    </Formik>
                     <Button
                         onClick={() => removeItem()}
                         text={"Remove item"}

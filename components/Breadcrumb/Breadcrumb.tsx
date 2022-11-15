@@ -2,14 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 import { BreadcrumbProps } from './Breadcrumb.props';
 
-export default function Breadcrumb( { post } : BreadcrumbProps ) {
+export default function Breadcrumb({ post }: BreadcrumbProps) {
   return (
     <nav aria-label="Breadcrumb" className="mb-4">
       <ol role="list" className="mx-auto flex max-w-2xl items-center 
         space-x-2 lg:max-w-7xl">
         <li>
           <div className="flex items-center">
-          <Link href="/"
+            <Link href="/"
               className="mr-2 text-sm 
               font-medium text-gray-900">HOME</Link>
             <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor"
