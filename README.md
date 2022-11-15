@@ -26,7 +26,6 @@ Only a few images can be saved due to the data upload capacity limit.
 https://store-app-react-six.vercel.app/
 
 ## Support
-
 Create an issue in the Github repository
 
 ## Authors
