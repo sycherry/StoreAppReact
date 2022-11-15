@@ -16,10 +16,10 @@ export default function CreateItem() {
     const router = useRouter();
     const dispatch = useDispatch();
 
-    const [photo, setPhoto] = useState<string>('')
-    const inputPhotoChange = (e: any) => {
-        setPhoto(URL.createObjectURL(e.target.files[0]))
-    }
+    // const [photo, setPhoto] = useState<string>('')
+    // const inputPhotoChange = (e: any) => {
+    //     setPhoto(URL.createObjectURL(e.target.files[0]))
+    // }
 
     const generateId = () => {
         return Date.now().toString() + "_" + (Math.random() * 1e6).toFixed(0).toString();
@@ -31,7 +31,7 @@ export default function CreateItem() {
                 id: generateId(),
                 title: value.title,
                 detail: value.detail,
-                photo: photo ? photo : "/washing.jpg",
+                photo: value.photo,
                 time: new Date().toLocaleString()
             })
         )
@@ -44,11 +44,7 @@ export default function CreateItem() {
             <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">
                 <div className="text-4xl text-center mb-4">Create item</div>
                 <BackButton router={router} />
-                <UploadImage
-                    setPhoto={setPhoto}
-                    photo={photo}
-                    onChange={inputPhotoChange}
-                />
+
                 <Formik
                     initialValues={initialValues}
                     validationSchema={ItemSchema}
@@ -56,20 +52,24 @@ export default function CreateItem() {
                         createItem(value)
                     }}
                 >
-                    {(formik) => (
+                    {({values,errors,touched,handleChange,handleBlur,setFieldValue}) => (
                         <Form>
+                            <UploadImage  
+                                photo={values.photo}
+                                setFieldValue={setFieldValue}
+                            />
                             <Input
-                                errors={formik.errors.title}
-                                touched={formik.touched.title}
-                                value={formik.values.title}
-                                onChange={formik.handleChange("title")}
-                                onBlur={formik.handleBlur("title")} />
+                                errors={errors.title}
+                                touched={touched.title}
+                                value={values.title}
+                                onChange={handleChange("title")}
+                                onBlur={handleBlur("title")} />
                             <Textarea
-                                errors={formik.errors.detail}
-                                touched={formik.touched.detail}
-                                value={formik.values.detail}
-                                onChange={formik.handleChange("detail")}
-                                onBlur={formik.handleBlur("detail")} />
+                                errors={errors.detail}
+                                touched={touched.detail}
+                                value={values.detail}
+                                onChange={handleChange("detail")}
+                                onBlur={handleBlur("detail")} />
                             <Button
                                 onClick={null}
                                 text={"Create Item"}

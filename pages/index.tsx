@@ -46,6 +46,7 @@ export default function Home() {
                     className="border border-gray-800 hover:shadow-lg"
                     objectFit="cover"
                   />
+                  
                   <h2 className="text-sm md:text-base mt-2">{item.title}</h2>
                 </Link>
               ))}

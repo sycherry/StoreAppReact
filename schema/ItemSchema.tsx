@@ -12,4 +12,5 @@ export const ItemSchema = Yup.object().shape({
 export const initialValues = {
     title: '',
     detail: '',
+    photo:''
 }

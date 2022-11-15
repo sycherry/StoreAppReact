@@ -46,7 +46,7 @@ export default function EditItem() {
                 id: router.query.id,
                 title: value.title,
                 detail: value.detail,
-                photo: photo ? photo : "/washing.jpg",
+                photo: value.photo ? value.photo : "/washing.jpg",
                 time: new Date().toLocaleString()
             }))
         router.push({ pathname: '/', })
@@ -67,35 +67,35 @@ export default function EditItem() {
                 <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">
                     <div className="text-4xl text-center mb-4">Edit item</div>
                     <BackButton router={router} />
-                    <UploadImage
-                        setPhoto={setPhoto}
-                        photo={photo}
-                        onChange={inputPhotoChange}
-                    />
                     <Formik
                         initialValues={{
                             title: title,
                             detail: detail,
+                            photo: photo,
                         }}
                         validationSchema={ItemSchema}
                         onSubmit={(value) => {
                             updateItem(value)
                         }}
                     >
-                        {(formik) => (
-                            <Form>
+                          {({values,errors,touched,handleChange,handleBlur,setFieldValue}) => (
+                        <Form>
+                            <UploadImage  
+                                photo={values.photo}
+                                setFieldValue={setFieldValue}
+                            />
                                 <Input
-                                    errors={formik.errors.title}
-                                    touched={formik.touched.title}
-                                    value={formik.values.title}
-                                    onChange={formik.handleChange("title")}
-                                    onBlur={formik.handleBlur("title")} />
+                                    errors={errors.title}
+                                    touched={touched.title}
+                                    value={values.title}
+                                    onChange={handleChange("title")}
+                                    onBlur={handleBlur("title")} />
                                 <Textarea
-                                    errors={formik.errors.detail}
-                                    touched={formik.touched.detail}
-                                    value={formik.values.detail}
-                                    onChange={formik.handleChange("detail")}
-                                    onBlur={formik.handleBlur("detail")} />
+                                    errors={errors.detail}
+                                    touched={touched.detail}
+                                    value={values.detail}
+                                    onChange={handleChange("detail")}
+                                    onBlur={handleBlur("detail")} />
                                 <Button
                                     onClick={null}
                                     text={"Update item"}

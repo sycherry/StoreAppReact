@@ -41,8 +41,8 @@ export default function ProductItem() {
           <div className="md:flex md:flex-row">
             <div className="md:basis-1/2 mb-6 md:mb-0">
               <Image
-                src={item?.photo}
-                alt={`Washing machine ${item?.title}`}
+                src={item.photo}
+                alt={`Washing machine ${item.title}`}
                 width={800}
                 height={800}
                 className="border border-gray-800"
