@@ -1,4 +1,4 @@
-import React ,{ useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Layout from '../../components/Layout/Layout';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
@@ -6,10 +6,11 @@ import Button from '../../components/Button/Button';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { ItemType } from '../../models/ItemType';
+import LoadingIndicator from '../../components/LoadingIndicator';
 
 export default function ProductItem() {
   const router = useRouter();
-  const loadingItemList = useSelector((state:any) => state.itemList);
+  const loadingItemList = useSelector((state: any) => state.itemList);
 
   const [item, setItem] = useState<ItemType>({
     title: '',
@@ -19,19 +20,19 @@ export default function ProductItem() {
   });
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const toEdit = (id:string) => {
+  const toEdit = (id: string) => {
     router.push({ pathname: `/edit/${id}` });
   };
 
   useEffect(() => {
     const { id } = router.query;
-    const newTodoList = loadingItemList.filter((item:ItemType) => item.id == id);
+    const newTodoList = loadingItemList.filter((item: ItemType) => item.id == id);
     setItem(newTodoList[0]);
     setIsLoading(false);
   }, [loadingItemList, router.isReady, router.query]);
 
   return (
-    isLoading ? <Layout><p>Loading...</p></Layout>
+    isLoading ? <Layout><LoadingIndicator /></Layout>
       :
       <Layout>
         <article className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10">

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '../components/Layout/Layout';
 import { useSelector } from 'react-redux';
+import LoadingIndicator from "../components/LoadingIndicator";
 
 export default function Home() {
   const loadingItemList = useSelector((state: any) => state.itemList);
@@ -18,7 +19,8 @@ export default function Home() {
   }, [loadingItemList]);
 
   return (
-    isLoading ? <Layout><p>Loading...</p></Layout>
+    isLoading ?
+      <Layout><LoadingIndicator/></Layout>
       :
       <Layout>
         <article className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10">

@@ -13,6 +13,7 @@ import { ItemType } from "../../models/ItemType";
 import toast from 'react-hot-toast';
 import { Formik, Form } from 'formik';
 import { ItemSchema } from "../../schema/ItemSchema";
+import LoadingIndicator from "../../components/LoadingIndicator";
 
 export default function EditItem() {
 
@@ -55,7 +56,7 @@ export default function EditItem() {
     };
 
     return (
-        isLoading ? <Layout><p>Loading...</p></Layout>
+        isLoading ? <Layout><LoadingIndicator/></Layout>
             :
             <Layout>
                 <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">
