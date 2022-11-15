@@ -22,4 +22,4 @@ export default function Header( { router } : HeaderProps) {
             }
         </header>
     );
-}
+};

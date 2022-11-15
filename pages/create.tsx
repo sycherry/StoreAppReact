@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import Layout from '../components/Layout/Layout'
-import Button from '../components/Button/Button'
+import React from "react";
+import Layout from '../components/Layout/Layout';
+import Button from '../components/Button/Button';
 import { useRouter } from 'next/router';
-import UploadImage from '../components/UploadImage/UploadImage'
+import UploadImage from '../components/UploadImage/UploadImage';
 import { useDispatch } from 'react-redux';
-import { addItemList } from '../store/itemList/action'
+import { addItemList } from '../store/itemList/action';
 import Input from "../components/Input/Input";
 import Textarea from "../components/Textarea/Textarea";
 import BackButton from "../components/BackButton/BackButton";
@@ -15,11 +15,6 @@ import { initialValues, ItemSchema } from "../schema/ItemSchema";
 export default function CreateItem() {
     const router = useRouter();
     const dispatch = useDispatch();
-
-    // const [photo, setPhoto] = useState<string>('')
-    // const inputPhotoChange = (e: any) => {
-    //     setPhoto(URL.createObjectURL(e.target.files[0]))
-    // }
 
     const generateId = () => {
         return Date.now().toString() + "_" + (Math.random() * 1e6).toFixed(0).toString();
@@ -34,10 +29,10 @@ export default function CreateItem() {
                 photo: value.photo ? value.photo : "/initialImage.jpg",
                 time: new Date().toLocaleString()
             })
-        )
-        router.push({ pathname: '/' })
+        );
+        router.push({ pathname: '/' });
         toast.success('Item added successfully');
-    }
+    };
 
     return (
         <Layout>
@@ -49,12 +44,11 @@ export default function CreateItem() {
                     initialValues={initialValues}
                     validationSchema={ItemSchema}
                     onSubmit={(value) => {
-                        createItem(value)
-                    }}
-                >
-                    {({values,errors,touched,handleChange,handleBlur,setFieldValue}) => (
+                        createItem(value);
+                    }}>
+                    {({ values, errors, touched, handleChange, handleBlur, setFieldValue }) => (
                         <Form>
-                            <UploadImage  
+                            <UploadImage
                                 photo={values.photo}
                                 setFieldValue={setFieldValue}
                             />
@@ -80,5 +74,5 @@ export default function CreateItem() {
             </article>
         </Layout>
     );
-}
+};
 

@@ -26,4 +26,4 @@ export default function Breadcrumb({ post }: BreadcrumbProps) {
       </ol>
     </nav>
   );
-}
+};

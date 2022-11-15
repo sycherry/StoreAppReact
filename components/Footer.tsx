@@ -1,5 +1,5 @@
 import React from 'react';
-import ScrollToTop from './ScrollToTop'
+import ScrollToTop from './ScrollToTop';
 import Link from 'next/link';
 import { Toaster } from 'react-hot-toast';
 
@@ -13,4 +13,4 @@ export default function Footer() {
             <Toaster />
         </footer>
     );
-}
+};

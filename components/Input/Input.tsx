@@ -18,7 +18,6 @@ export default function Input({ value, onChange, onBlur, errors, touched }: Inpu
           <span className="font-medium">Oops! </span>
           {errors}!</p>
       ) : null}
-
     </div>
   );
-}
+};

@@ -20,4 +20,4 @@ export default function Textarea({ value, onChange, onBlur, errors, touched } : 
       ) : null}
         </div>
     );
-}
+};

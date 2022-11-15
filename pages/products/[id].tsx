@@ -1,11 +1,11 @@
 import React ,{ useEffect, useState } from 'react';
-import Image from 'next/image'
+import Image from 'next/image';
 import Layout from '../../components/Layout/Layout';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Button from '../../components/Button/Button';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { ItemType } from '../../type/ItemType';
+import { ItemType } from '../../models/ItemType';
 
 export default function ProductItem() {
   const router = useRouter();
@@ -16,19 +16,19 @@ export default function ProductItem() {
     id: '',
     photo: '',
     detail: ''
-  })
+  });
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const toEdit = (id:string) => {
-    router.push({ pathname: `/edit/${id}` })
-  }
+    router.push({ pathname: `/edit/${id}` });
+  };
 
   useEffect(() => {
     const { id } = router.query;
-    const newTodoList = loadingItemList.filter((item:ItemType) => item.id == id)
+    const newTodoList = loadingItemList.filter((item:ItemType) => item.id == id);
     setItem(newTodoList[0]);
-    setIsLoading(false)
-  }, [router.isReady, router.query, loadingItemList, setItem, setIsLoading])
+    setIsLoading(false);
+  }, [loadingItemList, router.isReady, router.query]);
 
   return (
     isLoading ? <Layout><p>Loading...</p></Layout>

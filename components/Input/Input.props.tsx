@@ -4,4 +4,4 @@ export interface InputProps {
   onBlur: React.FocusEventHandler<HTMLInputElement>;
   errors: any;
   touched: any;
-}
+};

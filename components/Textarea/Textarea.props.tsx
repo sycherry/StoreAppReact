@@ -4,4 +4,4 @@ export interface TextareaProps {
     onBlur: React.FocusEventHandler<HTMLTextAreaElement>;
     errors: any;
     touched: any;
-}
+};

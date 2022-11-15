@@ -3,4 +3,4 @@ export interface ItemType {
   id: string;
   photo: string;
   detail: string;
-}
+};

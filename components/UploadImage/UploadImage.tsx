@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { UploadImageProps } from "./UploadImage.props";
 
 export default function UploadImage({ photo, setFieldValue }: UploadImageProps) {
 
     const inputPhotoChange = (e: any) => {
-        setFieldValue("photo", URL.createObjectURL(e.target.files[0]))
-    }
+        setFieldValue("photo", URL.createObjectURL(e.target.files[0]));
+    };
 
     return (
         <div>
@@ -42,4 +42,4 @@ export default function UploadImage({ photo, setFieldValue }: UploadImageProps) 
             </div>
         </div>
     );
-}
+};

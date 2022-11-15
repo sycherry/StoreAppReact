@@ -13,4 +13,4 @@ export const initialValues = {
     title: '',
     detail: '',
     photo:''
-}
+};
