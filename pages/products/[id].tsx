@@ -48,7 +48,6 @@ export default function ProductItem() {
                 width={800}
                 height={800}
                 className="border border-gray-800"
-                objectFit="cover"
               />
             </div>
 
