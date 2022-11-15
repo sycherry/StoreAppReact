@@ -36,10 +36,10 @@ export default function ProductItem() {
       :
       <Layout>
         <article className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10">
-          <Breadcrumb
-            post={item} />
+          <Breadcrumb post={item} />
 
           <div className="md:flex md:flex-row">
+
             <div className="md:basis-1/2 mb-6 md:mb-0">
               <Image
                 src={item.photo}

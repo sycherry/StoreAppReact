@@ -56,7 +56,7 @@ export default function EditItem() {
     };
 
     return (
-        isLoading ? <Layout><LoadingIndicator/></Layout>
+        isLoading ? <Layout><LoadingIndicator /></Layout>
             :
             <Layout>
                 <article className="max-w-screen-md mx-auto px-6 md:px-8 lg:px-10">

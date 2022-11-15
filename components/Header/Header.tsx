@@ -2,14 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 import { HeaderProps } from './Header.props';
 
-export default function Header( { router } : HeaderProps) {
+export default function Header({ router }: HeaderProps) {
     return (
         <header className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10 my-10">
             {router.pathname === '/' || router.pathname.startsWith('/products') ?
                 <>
                     <Link className="cursor-pointer" href={`/`}>
-                        <h1 className="
-        text-4xl md:text-5xl lg:text-6xl mb-4 text-center">Washing mashine store</h1>
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl mb-4 text-center">
+                            Washing mashine store</h1>
                     </Link>
                     <p className="mb-1 text-center">This is demo apprication,
                         you can create, update, delete item.

@@ -1,3 +1,5 @@
+import { FormikErrors } from "formik";
+
 export interface InputProps {
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
