@@ -4,7 +4,15 @@ import { UploadImageProps } from "./UploadImage.props";
 export default function UploadImage({ photo, setFieldValue }: UploadImageProps) {
 
     const inputPhotoChange = (e: any) => {
-        setFieldValue("photo", URL.createObjectURL(e.target.files[0]));
+        const files = e.target.files;
+        if (files.length > 0) {
+            var file = files[0];
+            var reader = new FileReader();
+            reader.onload = (e: any) => {
+                setFieldValue("photo", e.target.result);
+            };
+            reader.readAsDataURL(file);
+        };
     };
 
     return (
