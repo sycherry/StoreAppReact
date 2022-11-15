@@ -12,6 +12,12 @@ import toast from 'react-hot-toast';
 import { Formik, Form } from 'formik';
 import { initialValues, ItemSchema } from "../schema/ItemSchema";
 
+export interface CreateItemType {
+    title : string;
+    detail: string;
+    photo : string;
+};
+
 export default function CreateItem() {
     const router = useRouter();
     const dispatch = useDispatch();
@@ -20,7 +26,7 @@ export default function CreateItem() {
         return Date.now().toString() + "_" + (Math.random() * 1e6).toFixed(0).toString();
     };
 
-    const createItem = (value: any) => {
+    const createItem = (value: CreateItemType) => {
         dispatch(
             addItemList({
                 id: generateId(),

@@ -15,11 +15,20 @@ import { Formik, Form } from 'formik';
 import { ItemSchema } from "../../schema/ItemSchema";
 import LoadingIndicator from "../../components/LoadingIndicator";
 
+interface RootState {
+    itemList: ItemType[]
+};
+export interface EditItemType {
+    title : string;
+    detail: string;
+    photo : string;
+};
+
 export default function EditItem() {
 
     const router = useRouter();
     const dispatch = useDispatch();
-    const loadingItemList = useSelector((state: any) => state.itemList);
+    const loadingItemList = useSelector((state: RootState) => state.itemList);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const [title, setTitle] = useState<string>('');
@@ -27,17 +36,17 @@ export default function EditItem() {
     const [photo, setPhoto] = useState<string>('');
 
     useEffect(() => {
-        if (router.isReady) { 
-        const { id } = router.query;
-        const newItemList = loadingItemList.filter((item: ItemType) => item.id == id);
-        setTitle(newItemList[0]?.title);
-        setDetail(newItemList[0]?.detail);
-        setPhoto(newItemList[0]?.photo);
-        setIsLoading(false);
+        if (router.isReady) {
+            const { id } = router.query;
+            const newItemList = loadingItemList.filter((item: ItemType) => item.id == id);
+            setTitle(newItemList[0]?.title);
+            setDetail(newItemList[0]?.detail);
+            setPhoto(newItemList[0]?.photo);
+            setIsLoading(false);
         }
     }, [router.query, router.isReady, loadingItemList]);
 
-    const updateItem = (value: any) => {
+    const updateItem = (value: EditItemType) => {
         dispatch(
             updateItemList({
                 id: router.query.id as string,
@@ -52,7 +61,8 @@ export default function EditItem() {
 
     const removeItem = () => {
         dispatch(
-            removeItemList(router.query.id as string));
+            removeItemList(router.query.id as string)
+        );
         router.push({ pathname: '/' });
         toast.success('Item deleted successfully');
     };

@@ -4,7 +4,8 @@ import Link from 'next/link';
 import Layout from '../components/Layout/Layout';
 import { useSelector } from 'react-redux';
 import LoadingIndicator from "../components/LoadingIndicator";
-import { useRouter } from 'next/router';
+import { ItemType } from "../models/ItemType";
+
 
 export default function Home() {
   const loadingItemList = useSelector((state: any) => state.itemList);
@@ -13,7 +14,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const sortedItemList = loadingItemList.sort((a: any, b: any) => new Date(a.time) < new Date(b.time) ? 1 : -1);
+    const sortedItemList = loadingItemList.sort((a: ItemType, b: ItemType) => new Date(a.time) < new Date(b.time) ? 1 : -1);
     setItemList(sortedItemList);
     setIsLoading(false);
   }, [loadingItemList]);
