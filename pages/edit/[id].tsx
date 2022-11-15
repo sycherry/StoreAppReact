@@ -27,13 +27,15 @@ export default function EditItem() {
     const [photo, setPhoto] = useState<string>('');
 
     useEffect(() => {
+        if (router.isReady) { 
         const { id } = router.query;
         const newItemList = loadingItemList.filter((item: ItemType) => item.id == id);
         setTitle(newItemList[0]?.title);
         setDetail(newItemList[0]?.detail);
         setPhoto(newItemList[0]?.photo);
         setIsLoading(false);
-    }, [router.query, loadingItemList]);
+        }
+    }, [router.query, router.isReady, loadingItemList]);
 
     const updateItem = (value: any) => {
         dispatch(

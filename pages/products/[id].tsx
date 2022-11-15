@@ -26,17 +26,19 @@ export default function ProductItem() {
   };
 
   useEffect(() => {
-    const { id } = router.query;
+    if (router.isReady) { 
+    const { id } =router.query; 
     const newTodoList = loadingItemList.filter((item: ItemType) => item.id == id);
     setItem(newTodoList[0]);
     setIsLoading(false);
+    }
   }, [loadingItemList, router.isReady, router.query]);
 
   return (
     isLoading ? <Layout><LoadingIndicator /></Layout>
       :
       <Layout>
-        <article className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10">
+     <article className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-10">
           <Breadcrumb post={item} />
 
           <div className="md:flex md:flex-row">
@@ -71,7 +73,7 @@ export default function ProductItem() {
 
             </div>
           </div>
-        </article>
+        </article> 
       </Layout>
   );
 }
