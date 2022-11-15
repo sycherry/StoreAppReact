@@ -36,6 +36,7 @@ export default function Home() {
                   className="flex-item cursor-pointer 
                   mr-6 md:mr-8 lg:mr-10 mb-6 md:mb-8 lg:mb-10">
                   <Image
+                    priority={true}
                     src={item.photo}
                     alt={`Washing machine ${item.title}`}
                     width={800}
