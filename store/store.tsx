@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { HYDRATE, createWrapper } from 'next-redux-wrapper';
 import { initialData } from '../initialData';
+import { ItemType } from '../models/ItemType';
 import { ActionType } from './itemList/ActionType';
 import itemList from './itemList/reducers';
 
@@ -16,7 +17,7 @@ const loadState = () => {
   }
 };
 
-const saveState = (state: any) => {
+const saveState = (state: ItemType) => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem("itemList", serializedState);

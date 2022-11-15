@@ -1,4 +1,5 @@
 import { AnyAction } from "@reduxjs/toolkit";
+import { ItemType } from "../../models/ItemType";
 
 export const itemListActionTypes = {
   ADD: 'ADD',
@@ -6,15 +7,7 @@ export const itemListActionTypes = {
   UPDATE: 'UPDATE'
 };
 
-export interface Item {
-  id: any
-  title: string
-  detail: string
-  photo: string
-  time: any
-}
-
-export const addItemList = (payload: Item): AnyAction => ({
+export const addItemList = (payload: ItemType): AnyAction => ({
     type: itemListActionTypes.ADD,
     payload
 });
@@ -24,7 +17,7 @@ export const removeItemList = (payload: string) : AnyAction => ({
     payload
 });
 
-export const updateItemList = (payload: Item) : AnyAction => ({
+export const updateItemList = (payload: ItemType) : AnyAction => ({
     type: itemListActionTypes.UPDATE,
     payload
   });
