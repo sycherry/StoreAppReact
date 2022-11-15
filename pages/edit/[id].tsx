@@ -40,7 +40,7 @@ export default function EditItem() {
     const updateItem = (value: any) => {
         dispatch(
             updateItemList({
-                id: router.query.id,
+                id: router.query.id as string,
                 title: value.title,
                 detail: value.detail,
                 photo: value.photo ? value.photo : "/initialImage.jpg",
