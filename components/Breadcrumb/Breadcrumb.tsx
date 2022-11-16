@@ -20,8 +20,7 @@ export default function Breadcrumb({ post }: BreadcrumbProps) {
         </li>
 
         <li className="text-sm">
-          <a href={`products/${post.id}`} aria-current="page" className="font-medium text-gray-500 
-            hover:text-gray-600">{post.title}</a>
+        {post.title}
         </li>
       </ol>
     </nav>
