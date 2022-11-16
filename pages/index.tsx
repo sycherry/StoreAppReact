@@ -8,9 +8,10 @@ import { ItemType } from "../models/ItemType";
 
 
 export default function Home() {
-  const loadingItemList = useSelector((state: any) => state.itemList);
+  const loadingItemList = useSelector((state: ItemType[]) => state);
 
-  const [itemList, setItemList] = useState<string[]>([]);
+  console.log("loadingItemList",loadingItemList)
+  const [itemList, setItemList] = useState<ItemType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {

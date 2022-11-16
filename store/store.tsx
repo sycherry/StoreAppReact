@@ -1,8 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { HYDRATE, createWrapper } from 'next-redux-wrapper';
+import { createWrapper } from 'next-redux-wrapper';
 import { initialData } from '../initialData';
 import { ItemType } from '../models/ItemType';
-import { ActionType } from './itemList/ActionType';
 import itemList from './itemList/reducers';
 
 const loadState = () => {
@@ -17,7 +16,8 @@ const loadState = () => {
   }
 };
 
-const saveState = (state: ItemType) => {
+const saveState = (state: ItemType[]) => {
+  console.log("save state",state);
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem("itemList", serializedState);
@@ -26,28 +26,10 @@ const saveState = (state: ItemType) => {
   }
 };
 
-const combinedReducer = combineReducers({
-  itemList
-});
-
-const reducer = (state: any, action: ActionType) => {
-  if (action.type === HYDRATE) {
-    const nextState = {
-      ...state,
-      ...action.payload,
-    };
-    // preserve itemList value on client side navigation
-    if (state.itemList.itemList) nextState.itemList.itemList = state.itemList.itemList;
-    return nextState;
-  } else {
-    return combinedReducer(state, action);
-  }
-};
-
 const initStore = () => {
-  const initialState = loadState() || initialData;
+  let initialState = loadState() || initialData;
   const store = configureStore({
-    reducer,
+    reducer: itemList,
     preloadedState: initialState,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       immutableCheck: false,

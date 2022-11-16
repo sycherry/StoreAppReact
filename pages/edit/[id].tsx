@@ -15,9 +15,6 @@ import { Formik, Form } from 'formik';
 import { ItemSchema } from "../../schema/ItemSchema";
 import LoadingIndicator from "../../components/LoadingIndicator";
 
-interface RootState {
-    itemList: ItemType[]
-};
 export interface EditItemType {
     title : string;
     detail: string;
@@ -28,7 +25,7 @@ export default function EditItem() {
 
     const router = useRouter();
     const dispatch = useDispatch();
-    const loadingItemList = useSelector((state: RootState) => state.itemList);
+    const loadingItemList = useSelector((state: any) => state);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const [title, setTitle] = useState<string>('');
